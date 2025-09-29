@@ -30,6 +30,11 @@ const UserSchema = new Schema(
   { timestamps: true }
 );
 
+UserSchema.virtual("Asset", {
+  ref: "Asset",
+  localField: "_id",
+  foreignField: "user",
+});
 // ! FALTA COMPLETAR ACA
 
 export const UserModel = model("User", UserSchema);
