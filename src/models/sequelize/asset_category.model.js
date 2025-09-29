@@ -15,10 +15,12 @@ AssetModel.belongsToMany(CategoryModel, {
   through: AssetCategoryModel,
   foreignkey: "asset_id",
   as: "category",
+  onDelete: "CASCADE",
 });
 
 CategoryModel.belongsToMany(AssetModel, {
   through: AssetCategoryModel,
   foreignkey: "category_id",
   as: "assets",
+  onDelete: "CASCADE",
 });
