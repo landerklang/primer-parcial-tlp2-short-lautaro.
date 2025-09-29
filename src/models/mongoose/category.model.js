@@ -16,6 +16,18 @@ const CategorySchema = new Schema(
   { timestamps: true }
 );
 
+CategorySchema.virtual("Assets", {
+  ref: "Asset",
+  localField: "_id",
+  foreignField: "categoria",
+});
+
+CategorySchema.set("ToJson", {
+  virtuals: true,
+  transform: (doc, Result) => {
+    delete Result.id;
+  },
+});
 // ! FALTA COMPLETAR ACA
 
 export const CategoryModel = model("Category", CategorySchema);

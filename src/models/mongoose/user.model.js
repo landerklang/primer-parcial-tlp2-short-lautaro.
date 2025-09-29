@@ -35,6 +35,13 @@ UserSchema.virtual("Asset", {
   localField: "_id",
   foreignField: "user",
 });
+
+UserSchema.set("ToJson", {
+  virtuals: true,
+  transform: (doc, Result) => {
+    delete Result.id;
+  },
+});
 // ! FALTA COMPLETAR ACA
 
 export const UserModel = model("User", UserSchema);
