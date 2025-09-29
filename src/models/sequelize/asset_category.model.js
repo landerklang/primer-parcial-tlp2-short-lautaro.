@@ -1,4 +1,6 @@
 import { DataTypes } from "sequelize";
+import { AssetModel } from "./asset.model.js";
+import { CategoryModel } from "./category.model.js";
 
 export const AssetCategoryModel = sequelize.define("AssetCategory", {
   id: { type: DataTypes.INTEGER, autoIncrement: true, primaryKey: true },
@@ -8,3 +10,15 @@ export const AssetCategoryModel = sequelize.define("AssetCategory", {
 // * N:M Asset ↔ Category through AssetCategory
 // * 'categories' (Asset) y 'assets' (Category)
 // ! FALTA COMPLETAR ACA
+
+AssetModel.belongsToMany(CategoryModel, {
+  through: AssetCategoryModel,
+  foreignkey: "asset_id",
+  as: "category",
+});
+
+CategoryModel.belongsToMany(AssetModel, {
+  through: AssetCategoryModel,
+  foreignkey: "category_id",
+  as: "assets",
+});

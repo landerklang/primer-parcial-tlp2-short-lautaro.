@@ -1,4 +1,5 @@
 import { DataTypes } from "sequelize";
+import { UserModel } from "../mongoose/user.model.js";
 
 export const AssetModel = sequelize.define("Asset", {
   inventory_number: {
@@ -22,3 +23,7 @@ export const AssetModel = sequelize.define("Asset", {
 // * 1:N User → Asset (responsible)
 // * 'assets' (User) y 'responsible' (Asset)
 // ! FALTA COMPLETAR ACA
+
+UserModel.hasMany(AssetModel, { foreignkey: "user_id", as: "assets" });
+
+AssetModel.belongsTo(UserModel, { foreignkey: "user_id", as: "responsible" });

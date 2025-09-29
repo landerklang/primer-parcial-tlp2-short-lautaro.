@@ -18,6 +18,12 @@ const UserSchema = new Schema(
       enum: ["secretary", "administrator"],
       default: "secretary",
     },
+    profile: {
+      employee_number: { type: String, unique: true, require: true },
+      first_name: { type: String, require: true, minlength: 2, maxlength: 50 },
+      last_name: { type: String, require: true, minlength: 2, maxlength: 50 },
+      phone: { type: String, Option: true },
+    },
     deletedAt: { type: Date, default: null },
     // ! FALTA COMPLETAR ACA
   },

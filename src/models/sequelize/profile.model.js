@@ -1,4 +1,5 @@
 import { DataTypes } from "sequelize";
+import { UserModel } from "../mongoose/user.model.js";
 
 export const ProfileModel = sequelize.define("Profile", {
   employee_number: {
@@ -15,3 +16,6 @@ export const ProfileModel = sequelize.define("Profile", {
 // * 1:1 Profile ↔ User
 // * 'profile' (User) y 'user' (Profile)
 // ! FALTA COMPLETAR ACA
+
+UserModel.hasOne(ProfileModel, { foreignkey: "user_id", as: "profile" });
+ProfileModel.belongsTo(UserModel, { foreignkey: "profile_id", as: "user" });
